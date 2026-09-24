@@ -1,0 +1,10 @@
+# Feature task mirror
+
+Feature: gallery-lightbox
+
+- [x] Map existing gallery markup, styles, and JavaScript behavior.
+- [x] Add accessible lightbox markup and controls.
+- [x] Implement open, close, previous, next, keyboard, and reduced-motion behavior.
+- [x] Verify all 13 image references and responsive presentation in source.
+- [ ] Complete manual browser validation for visual interaction and mobile layout (blocked here: no browser binary available).
+- [x] Synchronize README claims with the implemented site.

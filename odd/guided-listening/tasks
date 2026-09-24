@@ -1,0 +1,10 @@
+# Feature task mirror
+
+Feature: guided-listening
+
+- [x] Add a warm listening invitation and chapter guide.
+- [x] Add the “Nuestra canción” chapter without invented personal history.
+- [x] Improve music control labels and status messaging.
+- [x] Preserve user-initiated playback, no autoplay, and reduced motion.
+- [x] Verify navigation, hooks, and static integrity.
+- [ ] Browser visual validation (no browser installed).

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d0713" />
+  <meta name="description" content="Un rincón para celebrar nuestra historia. Andrea y Xavier, 24 de septiembre." />
+  <title>Andrea &amp; Xavier · Nuestra Historia</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Andrea &amp; Xavier · Nuestra Historia" />
+  <meta property="og:description" content="Un rincón para celebrar nuestra historia. 24 de septiembre." />
+
+  <link rel="icon" href="assets/media/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- First-visit welcome: non-blocking listening invitation, shown only once.
+       Dismissing removes it from the document flow; the page stays accessible. -->
+  <div
+    class="welcome"
+    id="welcome"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="welcomeTitle"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="welcome__panel">
+      <p class="welcome__eyebrow">Un momento para nosotros</p>
+      <h2 class="welcome__title" id="welcomeTitle">Antes de comenzar</h2>
+      <p class="welcome__text">
+        Ponete cómoda, activá el sonido y, si podés, usá auriculares.
+        Esta historia se disfruta mejor sin apuro.
+      </p>
+      <div class="welcome__actions">
+        <button class="welcome__start" id="welcomeStart" type="button">
+          Comenzar nuestra historia
+        </button>
+        <button class="welcome__skip" id="welcomeSkip" type="button">
+          Omitir introducción
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient cinematic light layers -->
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__glow ambient__glow--a"></div>
+    <div class="ambient__glow ambient__glow--b"></div>
+    <div class="ambient__grain"></div>
+    <div class="ambient__vignette"></div>
+  </div>
+
+  <!-- Floating music control (placeholder audio source) -->
+  <div class="music" id="music">
+    <button
+      class="music__button"
+      id="musicToggle"
+      type="button"
+      aria-pressed="false"
+      aria-label="Reproducir nuestra canción"
+    >
+      <span class="music__disc" aria-hidden="true">
+        <span class="music__bars"><i></i><i></i><i></i><i></i></span>
+      </span>
+      <span class="music__label">
+        <span class="music__title" id="musicTitle">Nuestra canción</span>
+        <span class="music__hint" id="musicHint" aria-live="polite">Toca para empezar con sonido</span>
+      </span>
+    </button>
+    <!-- Replace the src with the real song file placed in assets/audio/ -->
+    <audio id="bgMusic" loop preload="none" src="assets/audio/nuestra-cancion.mp3"></audio>
+  </div>
+
+  <!-- Opening hero -->
+  <header class="hero" id="inicio">
+    <div class="hero__inner">
+      <p class="hero__eyebrow reveal">
+        Nuestra historia
+        <span class="hero__eyebrow-date">24 · 09</span>
+      </p>
+      <h1 class="hero__title reveal">
+        <span class="hero__name">Andrea Maldonado</span>
+        <span class="hero__amp">&amp;</span>
+        <span class="hero__name">Xavier Chuchuca</span>
+      </h1>
+      <p class="hero__subtitle reveal">Tres años de momentos, y toda nuestra historia por delante.</p>
+      <p class="hero__note reveal">Para ti, <em>mi amorcito bonito</em>, que convertiste un 24 de septiembre en una historia.</p>
+
+      <article class="anniversary reveal">
+        <p class="anniversary__eyebrow">Desde el 24 de septiembre</p>
+        <p class="anniversary__title"><span class="anniversary__num">03</span> años · una historia</p>
+        <p class="anniversary__line">Y todavía te elegiría en todos los capítulos que faltan.</p>
+      </article>
+
+      <a class="hero__cta reveal" href="#historia">
+        Leé nuestra historia
+      </a>
+    </div>
+
+    <div class="hero__visual reveal">
+      <figure class="hero__photo">
+        <div class="hero__photo-frame">
+          <img src="assets/media/11.jpeg" alt="Retrato cercano y cálido de Andrea y Xavier" fetchpriority="high" />
+        </div>
+        <figcaption class="hero__photo-caption">
+          <span class="hero__photo-index" aria-hidden="true">Nº 01</span>
+          <span class="hero__photo-tagline">Andrea &amp; Xavier</span>
+          <span class="hero__photo-date">24 · 09 · Tres años</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <a class="hero__scroll" href="#historia" aria-label="Bajar a nuestra historia">
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+      <span class="hero__scroll-text">Desliza</span>
+    </a>
+  </header>
+
+  <!-- Antes de empezar: non-blocking listening invitation -->
+  <section class="listen" aria-labelledby="listenTitle">
+    <div class="listen__inner">
+      <div class="listen__text reveal">
+        <p class="listen__eyebrow">Antes de empezar</p>
+        <h2 class="listen__title" id="listenTitle">Prepará el momento</h2>
+        <p class="listen__copy">
+          Acomodate donde estés, activá el sonido y, si podés, usá auriculares.
+          Esta historia se disfruta mejor así.
+        </p>
+      </div>
+
+      <ol class="listen__guide reveal">
+        <li class="listen__step">
+          <a class="listen__step-link" href="#cancion">
+            <span class="listen__step-num" aria-hidden="true">01</span>
+            <span class="listen__step-body">
+              <span class="listen__step-title">Activá el sonido</span>
+              <span class="listen__step-hint">Empezá con nuestra canción</span>
+            </span>
+          </a>
+        </li>
+        <li class="listen__step">
+          <a class="listen__step-link" href="#historia">
+            <span class="listen__step-num" aria-hidden="true">02</span>
+            <span class="listen__step-body">
+              <span class="listen__step-title">Recorré la historia</span>
+              <span class="listen__step-hint">Desde el comienzo, en orden</span>
+            </span>
+          </a>
+        </li>
+        <li class="listen__step">
+          <a class="listen__step-link" href="#momentos">
+            <span class="listen__step-num" aria-hidden="true">03</span>
+            <span class="listen__step-body">
+              <span class="listen__step-title">Reviví los momentos</span>
+              <span class="listen__step-hint">Nuestras fotos y recuerdos</span>
+            </span>
+          </a>
+        </li>
+        <li class="listen__step">
+          <a class="listen__step-link" href="#sorpresa">
+            <span class="listen__step-num" aria-hidden="true">04</span>
+            <span class="listen__step-body">
+              <span class="listen__step-title">Descubrí la sorpresa</span>
+              <span class="listen__step-hint">El cierre que guardamos para el final</span>
+            </span>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+    <!-- Chapter index: semantic, keyboard-accessible table of contents -->
+    <nav class="chapters" aria-label="Capítulos">
+      <ol class="chapters__list">
+        <li class="chapters__item">
+          <a class="chapters__link" href="#historia">
+            <span class="chapters__number" aria-hidden="true">01</span>
+            <span class="chapters__label">Cómo empezó</span>
+          </a>
+        </li>
+        <li class="chapters__item">
+          <a class="chapters__link" href="#cancion">
+            <span class="chapters__number" aria-hidden="true">02</span>
+            <span class="chapters__label">Nuestra canción</span>
+          </a>
+        </li>
+        <li class="chapters__item">
+          <a class="chapters__link" href="#momentos">
+            <span class="chapters__number" aria-hidden="true">03</span>
+            <span class="chapters__label">Momentos</span>
+          </a>
+        </li>
+        <li class="chapters__item">
+          <a class="chapters__link" href="#amor">
+            <span class="chapters__number" aria-hidden="true">04</span>
+            <span class="chapters__label">Lo que amo</span>
+          </a>
+        </li>
+        <li class="chapters__item">
+          <a class="chapters__link" href="#carta">
+            <span class="chapters__number" aria-hidden="true">05</span>
+            <span class="chapters__label">La carta</span>
+          </a>
+        </li>
+        <li class="chapters__item">
+          <a class="chapters__link" href="#sorpresa">
+            <span class="chapters__number" aria-hidden="true">06</span>
+            <span class="chapters__label">La sorpresa</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+    <!-- Chapter: how it all began -->
+    <section class="section" id="historia">
+      <div class="section__head reveal">
+        <span class="section__index" aria-hidden="true">01</span>
+        <p class="section__kicker">Capítulo uno</p>
+        <h2 class="section__title">Cómo empezó todo</h2>
+        <p class="section__lede">
+          Un amigo en común, una noche cualquiera y el inicio de lo mejor que me ha pasado.
+        </p>
+      </div>
+
+      <ol class="timeline">
+        <li class="timeline__item reveal">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__body">
+            <p class="timeline__date">El comienzo</p>
+            <h3 class="timeline__title">Un amigo en común</h3>
+            <p class="timeline__text">
+              No fue el destino ni una casualidad del universo: fue un amigo en común
+              que puso nuestros caminos en el mismo lugar. Y desde ahí, todo cambió.
+            </p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__body">
+            <p class="timeline__date">Nuestra primera noche</p>
+            <h3 class="timeline__title">Nidia</h3>
+            <p class="timeline__text">
+              Nuestra primera salida fue a la discoteca <strong>Nidia</strong>.
+              Las luces, la música y tú. Ya no recuerdo la canción que sonaba,
+              pero sí recuerdo que no podía dejar de mirarte.
+            </p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__body">
+            <p class="timeline__date">24 de septiembre · Nuestro tercer aniversario</p>
+            <h3 class="timeline__title">Tres años juntos</h3>
+            <p class="timeline__text">
+              El <strong>24 de septiembre</strong> se volvió nuestra fecha.
+              Hoy celebramos <strong>3 años juntos</strong> y todos los momentos
+              que nos han traído hasta acá, con todo lo que todavía nos falta vivir.
+            </p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__marker" aria-hidden="true"></div>
+          <div class="timeline__body">
+            <p class="timeline__date">Hoy</p>
+            <h3 class="timeline__title">Mi amorcito bonito</h3>
+            <p class="timeline__text">
+              Y aquí seguimos, sumando días, canciones y momentos. Esta página
+              es solo un pedacito de todo lo que todavía nos falta vivir.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Chapter: our song -->
+    <section class="section section--song" id="cancion">
+      <div class="section__head reveal">
+        <span class="section__index" aria-hidden="true">02</span>
+        <p class="section__kicker">Capítulo dos</p>
+        <h2 class="section__title">Nuestra canción</h2>
+        <p class="section__lede">
+          Un pequeño dato curioso sobre una canción muy especial.
+        </p>
+      </div>
+
+      <div class="song reveal">
+        <p class="song__eyebrow">Un detalle importante</p>
+        <h3 class="song__title">Por qué elegí esta canción</h3>
+        <p class="song__text song__text--hook">
+          Hace varios años que escucho esta canción y desde entonces siempre tuvo algo especial para mí. Durante mucho tiempo pensé en a quién podría dedicársela, pero nunca había encontrado a la persona indicada. Hasta que llegaste vos. Ahí entendí que no estaba esperando otra canción, sino a la persona con quien quería compartirla.
+        </p>
+      </div>
+    </section>
+
+    <!-- Chapter: gallery placeholders -->
+    <section class="section section--media" id="momentos">
+      <div class="section__head reveal">
+        <span class="section__index" aria-hidden="true">03</span>
+        <p class="section__kicker">Capítulo tres</p>
+        <h2 class="section__title">Nuestros momentos</h2>
+        <p class="section__lede">
+          Algunos de los momentos que guardo de nosotros, reunidos en un solo lugar.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <figure class="media media--photo media--featured reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/1.jpeg" alt="Momento de Andrea y Xavier" loading="lazy" /></div>
+          <figcaption class="media__caption">Una mirada que lo dice todo</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/2.jpeg" alt="Recuerdo de Andrea y Xavier" loading="lazy" /></div>
+          <figcaption class="media__caption">Risas que quiero guardar siempre</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/3.jpeg" alt="Andrea y Xavier juntos" loading="lazy" /></div>
+          <figcaption class="media__caption">Conversaciones que nunca quiero que terminen</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/4.jpeg" alt="Momento especial de Andrea y Xavier" loading="lazy" /></div>
+          <figcaption class="media__caption">Tu paciencia, mi lugar en calma</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/5.jpeg" alt="Andrea y Xavier compartiendo un momento" loading="lazy" /></div>
+          <figcaption class="media__caption">Siempre juntos, siempre eligiéndonos</figcaption>
+        </figure>
+        <figure class="media media--photo media--featured reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/6.jpeg" alt="Recuerdo especial de nuestra historia" loading="lazy" /></div>
+          <figcaption class="media__caption">Nuestra historia, capítulo a capítulo</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/7.jpeg" alt="Andrea y Xavier celebrando su historia" loading="lazy" /></div>
+          <figcaption class="media__caption">Luces, música y vos a mi lado</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/8.jpeg" alt="Un día especial junto a Andrea" loading="lazy" /></div>
+          <figcaption class="media__caption">Un día más para recordar</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/9.jpeg" alt="Andrea y Xavier compartiendo juntos" loading="lazy" /></div>
+          <figcaption class="media__caption">Una noche para no olvidar</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/10.jpeg" alt="Momento romántico de Andrea y Xavier" loading="lazy" /></div>
+          <figcaption class="media__caption">Mi lugar favorito sos vos</figcaption>
+        </figure>
+        <figure class="media media--photo media--featured reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/11.jpeg" alt="Recuerdo de nuestra relación" loading="lazy" /></div>
+          <figcaption class="media__caption">Seguir sumando momentos contigo</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/12.jpeg" alt="Andrea y Xavier en un momento especial" loading="lazy" /></div>
+          <figcaption class="media__caption">Lo mejor todavía está por venir</figcaption>
+        </figure>
+        <figure class="media media--photo reveal" data-lightbox tabindex="0">
+          <div class="media__frame"><img src="assets/media/13.jpeg" alt="Andrea y Xavier, nuestra historia" loading="lazy" /></div>
+          <figcaption class="media__caption">Por todos los capítulos que nos faltan</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Chapter: what I love about you -->
+    <section class="section section--love" id="amor">
+      <div class="section__head reveal">
+        <span class="section__index" aria-hidden="true">04</span>
+        <p class="section__kicker">Capítulo cuatro</p>
+        <h2 class="section__title">Lo que amo de vos</h2>
+        <p class="section__lede">
+          Si tuviera que quedarme con algo, sería esto.
+        </p>
+      </div>
+
+      <div class="love-grid">
+        <article class="love__card reveal">
+          <h3 class="love__title">Tu mirada</h3>
+          <p class="love__text">
+            Porque en tu forma de mirarme encontré mi lugar más seguro.
+          </p>
+        </article>
+
+        <article class="love__card reveal">
+          <h3 class="love__title">Tu risa</h3>
+          <p class="love__text">
+            Porque tus risas se volvieron la música que quiero escuchar siempre.
+          </p>
+        </article>
+
+        <article class="love__card reveal">
+          <h3 class="love__title">Nuestras conversaciones</h3>
+          <p class="love__text">
+            Porque hablar con vos es quedarme deseando seguir hablando.
+          </p>
+        </article>
+
+        <article class="love__card reveal">
+          <h3 class="love__title">Tu paciencia</h3>
+          <p class="love__text">
+            Porque con tu paciencia hasta los días difíciles se vuelven más livianos.
+          </p>
+        </article>
+
+        <article class="love__card reveal">
+          <h3 class="love__title">Que te elijo</h3>
+          <p class="love__text">
+            Porque hoy, como todos los días, vuelvo a elegirte a vos.
+          </p>
+        </article>
+
+        <article class="love__card reveal">
+          <h3 class="love__title">Los capítulos que faltan</h3>
+          <p class="love__text">
+            Porque lo mejor de nuestra historia todavía nos queda por escribir.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Chapter: the letter -->
+    <section class="section section--letter" id="carta">
+      <div class="section__head reveal">
+        <span class="section__index" aria-hidden="true">05</span>
+        <p class="section__kicker">Capítulo cinco</p>
+        <h2 class="section__title">Una carta para ti</h2>
+      </div>
+
+      <article class="letter reveal">
+        <p class="letter__salutation">Mi amorcito bonito,</p>
+        <p class="letter__text">
+          Hoy celebramos tres años juntos, tres años desde aquel 24 de septiembre
+          que se convirtió en una de las fechas más importantes de mi vida.
+        </p>
+        <p class="letter__text">
+          A veces pienso en cómo empezó todo: un amigo en común, una noche en Nidia
+          y dos personas que todavía no sabían todo lo que les esperaba. No imaginaba
+          que aquella salida iba a llevarme a conocer a alguien tan especial, alguien
+          que con el tiempo se convertiría en mi compañera, mi alegría y una parte tan
+          importante de mi vida.
+        </p>
+        <p class="letter__text">
+          En estos tres años hemos compartido momentos hermosos, risas, conversaciones,
+          días difíciles y muchos recuerdos que voy a guardar siempre. Cada instante a
+          tu lado me ha enseñado que el amor no está solamente en los grandes gestos,
+          sino también en las pequeñas cosas: en tu forma de mirarme, en nuestras
+          conversaciones y en estar juntos aunque no hagamos nada extraordinario.
+        </p>
+        <p class="letter__text">
+          Gracias por estar conmigo, por tu cariño, por tu paciencia y por cada momento
+          que hemos construido. Gracias por hacer que mis días sean más bonitos y por
+          permitirme caminar a tu lado durante estos tres años.
+        </p>
+        <p class="letter__text">
+          Quiero que sepas que te sigo eligiendo. Te elijo en los días fáciles y en los
+          complicados, en las risas y en los silencios, en cada nuevo capítulo que
+          todavía nos queda por escribir.
+        </p>
+        <p class="letter__text">
+          Esta página es apenas un pequeño pedacito de todo lo que siento por vos.
+          Nuestra historia es mucho más grande que cualquier foto, canción o palabra,
+          pero hice esto para recordarte lo importante que sos para mí.
+        </p>
+        <p class="letter__text">
+          Feliz tercer aniversario, mi amor. Gracias por estos tres años y por todos
+          los que todavía nos faltan vivir. Te amo muchísimo.
+        </p>
+        <p class="letter__signature">Con todo mi amor,<br />Xavier</p>
+      </article>
+    </section>
+
+    <!-- Final chapter: our shared next step -->
+    <section class="section section--surprise" id="sorpresa">
+      <div class="section__head reveal">
+        <span class="section__index" aria-hidden="true">06</span>
+        <p class="section__kicker">Capítulo seis</p>
+        <h2 class="section__title">Nuestro próximo capítulo</h2>
+        <p class="section__lede">Nos espera una nueva aventura.</p>
+      </div>
+
+      <div class="surprise reveal">
+        <button class="surprise__button" id="surpriseButton" type="button" aria-expanded="false">
+          <span class="surprise__heart" aria-hidden="true">♡</span>
+          <span class="surprise__label">Abrir nuestro capítulo</span>
+        </button>
+        <div class="surprise__content" id="surpriseContent" role="dialog" aria-label="Nuestra sorpresa" hidden>
+          <button class="surprise__close" id="surpriseClose" type="button">Volver a la historia</button>
+
+          <div class="surprise__garden" aria-hidden="true">
+            <div class="surprise__sky"></div>
+            <div class="surprise__glow"></div>
+            <div class="surprise__moon"></div>
+            <div class="surprise__ground"></div>
+
+            <span class="flower flower--back flower--1">
+              <span class="flower__plant">
+                <span class="flower__stem"></span>
+                <span class="flower__sepal"></span>
+                <span class="flower__glow"></span>
+                <span class="flower__bloom">
+                  <i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i>
+                  <span class="flower__core"></span>
+                </span>
+              </span>
+            </span>
+            <span class="flower flower--back flower--2">
+              <span class="flower__plant">
+                <span class="flower__stem"></span>
+                <span class="flower__sepal"></span>
+                <span class="flower__glow"></span>
+                <span class="flower__bloom">
+                  <i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i>
+                  <span class="flower__core"></span>
+                </span>
+              </span>
+            </span>
+            <span class="flower flower--mid flower--3">
+              <span class="flower__plant">
+                <span class="flower__stem"></span>
+                <span class="flower__sepal"></span>
+                <span class="flower__glow"></span>
+                <span class="flower__bloom">
+                  <i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i>
+                  <span class="flower__core"></span>
+                </span>
+              </span>
+            </span>
+            <span class="flower flower--fore flower--4">
+              <span class="flower__plant">
+                <span class="flower__stem"></span>
+                <span class="flower__sepal"></span>
+                <span class="flower__glow"></span>
+                <span class="flower__bloom">
+                  <i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i>
+                  <span class="flower__core"></span>
+                </span>
+              </span>
+            </span>
+            <span class="flower flower--mid flower--5">
+              <span class="flower__plant">
+                <span class="flower__stem"></span>
+                <span class="flower__sepal"></span>
+                <span class="flower__glow"></span>
+                <span class="flower__bloom">
+                  <i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i>
+                  <span class="flower__core"></span>
+                </span>
+              </span>
+            </span>
+            <span class="flower flower--fore flower--6">
+              <span class="flower__plant">
+                <span class="flower__stem"></span>
+                <span class="flower__sepal"></span>
+                <span class="flower__glow"></span>
+                <span class="flower__bloom">
+                  <i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i>
+                  <span class="flower__core"></span>
+                </span>
+              </span>
+            </span>
+            <span class="flower flower--mid flower--7">
+              <span class="flower__plant">
+                <span class="flower__stem"></span>
+                <span class="flower__sepal"></span>
+                <span class="flower__glow"></span>
+                <span class="flower__bloom">
+                  <i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i><i class="flower__petal"></i>
+                  <span class="flower__core"></span>
+                </span>
+              </span>
+            </span>
+
+            <span class="tulip tulip--back tulip--1">
+              <span class="tulip__plant">
+                <span class="tulip__stem"></span>
+                <span class="tulip__glow"></span>
+                <span class="tulip__sepal"></span>
+                <span class="tulip__bloom"></span>
+              </span>
+            </span>
+            <span class="tulip tulip--mid tulip--2">
+              <span class="tulip__plant">
+                <span class="tulip__stem"></span>
+                <span class="tulip__glow"></span>
+                <span class="tulip__sepal"></span>
+                <span class="tulip__bloom"></span>
+              </span>
+            </span>
+            <span class="tulip tulip--fore tulip--3">
+              <span class="tulip__plant">
+                <span class="tulip__stem"></span>
+                <span class="tulip__glow"></span>
+                <span class="tulip__sepal"></span>
+                <span class="tulip__bloom"></span>
+              </span>
+            </span>
+            <span class="tulip tulip--fore tulip--4">
+              <span class="tulip__plant">
+                <span class="tulip__stem"></span>
+                <span class="tulip__glow"></span>
+                <span class="tulip__sepal"></span>
+                <span class="tulip__bloom"></span>
+              </span>
+            </span>
+
+            <span class="heart heart--1" aria-hidden="true"></span>
+            <span class="heart heart--2" aria-hidden="true"></span>
+            <span class="heart heart--3" aria-hidden="true"></span>
+            <span class="heart heart--4" aria-hidden="true"></span>
+            <span class="heart heart--5" aria-hidden="true"></span>
+            <span class="heart heart--6" aria-hidden="true"></span>
+          </div>
+
+          <div class="surprise__panel">
+            <p class="surprise__teaser">Un lugar nuevo por descubrir</p>
+            <p class="surprise__message" id="surpriseTitle">Otra historia para guardar juntos</p>
+            <p class="surprise__text">
+              Y todavía muchos capítulos nos esperan: un camino entero por delante,
+              y quiero recorrerlos todos a tu lado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__names">Andrea &amp; Xavier</p>
+    <p class="footer__date">24 de septiembre</p>
+    <p class="footer__note">Hecho con amor, para ti.</p>
+  </footer>
+
+  <!-- Lightbox: full-screen gallery viewer -->
+  <div
+    class="lightbox"
+    id="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lightboxCaption"
+    hidden
+  >
+    <button class="lightbox__button lightbox__button--close" id="lightboxClose" type="button" aria-label="Cerrar galería">×</button>
+    <button class="lightbox__button lightbox__button--prev" id="lightboxPrev" type="button" aria-label="Foto anterior">‹</button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__image" id="lightboxImage" src="" alt="" />
+      <figcaption class="lightbox__caption" id="lightboxCaption" aria-live="polite"></figcaption>
+    </figure>
+    <button class="lightbox__button lightbox__button--next" id="lightboxNext" type="button" aria-label="Foto siguiente">›</button>
+    <p class="lightbox__counter" id="lightboxCounter"></p>
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

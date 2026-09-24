@@ -1,0 +1,10 @@
+# Feature task mirror
+
+Feature: yellow-garden-reveal
+
+- [x] Remove destination/date details from the final chapter.
+- [x] Rewrite the final message as an open romantic next chapter.
+- [x] Build a layered yellow garden reveal.
+- [x] Preserve accessibility, reduced motion, and reveal behavior.
+- [x] Verify performance and static integrity.
+- [ ] Browser visual validation: pending because no browser is installed.

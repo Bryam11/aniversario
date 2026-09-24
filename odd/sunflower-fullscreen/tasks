@@ -1,0 +1,10 @@
+# Feature task mirror
+
+Feature: sunflower-fullscreen
+
+- [x] Replace small flowers with sunflower-inspired layered blooms.
+- [x] Expand the opened reveal to a full-viewport composition.
+- [x] Add a usable open/close or return interaction.
+- [x] Preserve reduced motion, accessibility, and performance.
+- [x] Verify existing hooks and static integrity.
+- [ ] Browser visual validation: pending because no browser is installed in this environment.

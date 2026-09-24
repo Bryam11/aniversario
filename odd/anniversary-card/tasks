@@ -1,0 +1,9 @@
+# Feature task mirror
+
+Feature: anniversary-card
+
+- [x] Remove the countdown presentation.
+- [x] Add the editorial anniversary card.
+- [x] Add restrained motion with reduced-motion support.
+- [x] Remove obsolete countdown behavior and verify hooks.
+- [ ] Browser visual validation is pending because no browser is installed.

@@ -1,0 +1,10 @@
+# Feature task mirror
+
+Feature: cinematic-motion
+
+- [x] Stage the hero entrance with opacity and transform.
+- [x] Add subtle movement to the hero photograph.
+- [x] Improve reveal timing and timeline progression.
+- [x] Strengthen the surprise finale animation.
+- [x] Preserve reduced-motion and verify static integrity.
+- [ ] Browser runtime validation (pending: no browser installed).

@@ -1,0 +1,9 @@
+# Feature task mirror
+
+Feature: luxury-editorial
+
+- [x] Build photographic hero with existing couple photo and editorial hierarchy.
+- [x] Add chapter navigation and stronger visual rhythm.
+- [x] Refine gallery, love cards, letter, and surprise into one system.
+- [x] Preserve existing interactions and reduced-motion behavior.
+- [ ] Verify structure/assets and document browser validation status. (Pending: browser visual validation — no browser engine installed.)

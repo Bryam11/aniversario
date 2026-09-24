@@ -1,0 +1,12 @@
+# Feature task mirror
+
+Feature: romantic-polish
+
+- [x] Refine hero with intimate message and story CTA.
+- [x] Replace placeholder-like gallery copy and improve editorial presentation.
+- [x] Add concise emotional section from existing letter themes.
+- [x] Improve letter and surprise presentation without changing facts.
+- [x] Run static checks and document browser validation status.
+
+Evidence: JS syntax passed; HTML tag balance passed after fixing the missing `</p>`; CSS balance passed; all 13 images resolve; romantic / lightbox / reveal hooks present.
+- [ ] Browser visual validation: pending — no browser binary is available.

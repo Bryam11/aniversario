@@ -1,0 +1,9 @@
+# Feature task mirror
+
+Feature: first-visit-welcome
+
+- [ ] Add accessible first-visit welcome layer.
+- [ ] Start music from explicit begin action.
+- [ ] Persist dismissal and provide skip option.
+- [ ] Preserve audio fallback and reduced motion.
+- [ ] Verify no unintended autoplay or page lock.

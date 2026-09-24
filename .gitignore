@@ -1,0 +1,32 @@
+# Dependencies (not used by this static site, ignored defensively)
+node_modules/
+
+# Build output (no build step today; reserved for future tooling)
+dist/
+build/
+
+# Vercel local metadata
+.vercel/
+
+# Environment / secrets — never commit
+.env
+.env.*
+*.local
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Local Pi runtime state
+.atl/
+.codegraph/

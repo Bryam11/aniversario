@@ -1,0 +1,9 @@
+# Feature task mirror
+
+Feature: shared-chapter
+
+- [x] Reframe the trip as a shared next chapter.
+- [x] Add a lightweight yellow-flower bloom reveal.
+- [x] Preserve interaction, accessibility, and reduced motion.
+- [x] Verify structure, hooks, and performance constraints.
+- [ ] Browser visual validation is pending because no browser is installed.
