@@ -1442,6 +1442,122 @@ body.is-locked { overflow: hidden; }
   to   { opacity: 1; transform: none; }
 }
 
+/* --- Fireworks ------------------------------------------------------------ */
+/* A restrained celebration in the upper sky: four small golden/rose bursts,
+   each a static center plus ten fixed sparks that radiate outward from the
+   center. Pure CSS, opacity/transform only, no canvas, no particles, no layout
+   animation. Each burst fires once per reveal (delays below) and then rests
+   invisible, so the sky returns to quiet. Decorative only: lives inside the
+   aria-hidden garden, pointer-events: none, and precedes the moon in DOM order
+   so the crescent always stays clear on top. */
+.fireworks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.burst {
+  position: absolute;
+  left: var(--b-x, 50%);
+  top: var(--b-y, 12%);
+  width: var(--b-size, 60px);
+  height: var(--b-size, 60px);
+  margin-left: calc(var(--b-size, 60px) * -0.5);
+  margin-top: calc(var(--b-size, 60px) * -0.5);
+  transform-origin: center;
+}
+
+/* Upper-sky placement, size and firing time: every burst stays above the
+   centered message (panel z-index 2) and clear of the top-right close control
+   and the crescent moon. */
+.burst--1 { --b-x: 14%; --b-y: 16%; --b-size: 60px; --b-delay: 1.3s; }
+.burst--2 { --b-x: 35%; --b-y: 8%;  --b-size: 76px; --b-delay: 2.1s; }
+.burst--3 { --b-x: 62%; --b-y: 15%; --b-size: 56px; --b-delay: 2.9s; }
+.burst--4 { --b-x: 80%; --b-y: 24%; --b-size: 68px; --b-delay: 3.7s; }
+
+/* Ten fixed sparks per burst: each is a thin ray pinned at the burst center,
+   rotated to its own angle. Even rays are golden, odd rays rose, alternating
+   around the ring; they open in a short stagger, twinkle once mid-bloom, then
+   drift outward and fade. Angle and stagger derive from a per-child counter. */
+.burst__spark {
+  --s-deg: calc(var(--i, 0) * 36deg);
+  --s-delay: calc(var(--i, 0) * 0.028s);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46%;
+  height: 2px;
+  margin-top: -1px;
+  transform-origin: left center;
+  transform: rotate(var(--s-deg, 0deg)) scaleX(0.12);
+  background: linear-gradient(90deg, rgba(255, 224, 140, 0) 0%, var(--s-c1, #fff3b8) 40%, var(--s-c2, #ffc46b) 76%, var(--s-c3, #ffb06b) 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 3px rgba(255, 214, 120, 0.55);
+  will-change: opacity, transform;
+  opacity: 0;
+  animation: burstSpark 1.6s var(--ease) calc(var(--b-delay, 0s) + var(--s-delay, 0s)) both;
+}
+.burst__spark:nth-child(1)  { --i: 0; }
+.burst__spark:nth-child(2)  { --i: 1; }
+.burst__spark:nth-child(3)  { --i: 2; }
+.burst__spark:nth-child(4)  { --i: 3; }
+.burst__spark:nth-child(5)  { --i: 4; }
+.burst__spark:nth-child(6)  { --i: 5; }
+.burst__spark:nth-child(7)  { --i: 6; }
+.burst__spark:nth-child(8)  { --i: 7; }
+.burst__spark:nth-child(9)  { --i: 8; }
+.burst__spark:nth-child(10) { --i: 9; }
+/* Rose tint on the odd rays gives each ring its golden/rose alternation. */
+.burst__spark:nth-child(odd) { --s-c1: #ffdcc4; --s-c2: #ff9ab8; --s-c3: #ef5f8a; }
+
+/* The burst center: a small warm dot that pops with the opening rays, twinkles
+   once mid-bloom and fades with them. Bursts 2 and 4 lean rose. */
+.burst::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--c-d, #fff8dc) 0%, var(--c-m, #ffd76b) 45%, var(--c-f, #ff9ab8) 78%, rgba(255, 154, 184, 0) 100%);
+  box-shadow:
+    0 0 8px 2px var(--c-glow, rgba(255, 214, 120, 0.7)),
+    0 0 22px 8px var(--c-halo, rgba(255, 154, 184, 0.32));
+  will-change: opacity, transform;
+  opacity: 0;
+  animation: burstCore 1.6s var(--ease) var(--b-delay, 0s) both;
+}
+.burst--2::after,
+.burst--4::after {
+  --c-d: #ffeef6;
+  --c-m: #ff9ab8;
+  --c-f: #ef5f8a;
+  --c-glow: rgba(255, 154, 184, 0.7);
+  --c-halo: rgba(255, 154, 184, 0.34);
+}
+
+/* Rays open from the center with a short per-ray stagger, dip and flash once
+   after opening, then drift a little outward as they fade out. */
+@keyframes burstSpark {
+  0%   { opacity: 0; transform: rotate(var(--s-deg, 0deg)) scaleX(0.12); }
+  26%  { opacity: 1; transform: rotate(var(--s-deg, 0deg)) scaleX(1); }
+  42%  { opacity: 0.5; }
+  54%  { opacity: 1; }
+  100% { opacity: 0; transform: rotate(var(--s-deg, 0deg)) translateX(14%) scaleX(0.9); }
+}
+
+/* Center pops in, twinkles once, then fades out with the rays. */
+@keyframes burstCore {
+  0%   { opacity: 0; transform: scale(0.25); }
+  14%  { opacity: 1; transform: scale(1.15); }
+  30%  { opacity: 0.85; transform: scale(1); }
+  46%  { opacity: 1; transform: scale(1.3); }
+  60%  { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+
 /* --- Sunflower field ------------------------------------------------------ */
 /* Full-screen garden of sunflower-inspired blooms: broad layered golden petals
    with warm amber highlights and dark textured centers, plus green stems and
@@ -2012,6 +2128,15 @@ body.is-locked { overflow: hidden; }
 
   /* Hearts: no drift, rendered static at their quiet resting opacity. */
   .surprise__content .heart { animation: none; opacity: var(--h-op, 0.45); transform: none; }
+
+  /* Fireworks: no choreography; all bursts render fully opened, static and
+     subtle with no repeated motion, so the sky stays calm. */
+  .surprise__content .fireworks .burst__spark {
+    animation: none;
+    opacity: 0.5;
+    transform: rotate(var(--s-deg, 0deg)) scaleX(1);
+  }
+  .surprise__content .burst::after { animation: none; opacity: 0.85; transform: scale(1); }
 
   /* Anniversary card renders in place: hairline frame and gold dash stay
      static, no entrance stagger. */

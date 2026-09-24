@@ -1,0 +1,12 @@
+# Feature task mirror
+
+Feature: fireworks-garden
+
+- [x] Add bounded decorative fireworks in the garden sky.
+- [x] Animate bursts with opacity/transform only.
+- [x] Preserve accessibility, reduced motion, close behavior, and performance.
+- [x] Verify static integrity and create the requested commit.
+
+## Pending
+
+- [ ] Browser visual validation (no browser is installed).
